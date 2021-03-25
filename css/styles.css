@@ -1,0 +1,259 @@
+body{
+    padding: 0;
+    margin: 0;
+}
+
+/****************************************NOTRE HEADER******************************************/
+header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #efefef;
+    padding: .25rem;
+    background-color: orange;
+    z-index: 100;
+}
+header .logo img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+header .navToggle{
+    position: absolute;
+    right: 0;
+    padding: 1rem;
+    cursor: pointer;
+    color: #eee;
+    font-size: 1.8rem;
+    display: none;
+}
+
+
+header ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header ul li{
+    list-style: none;
+}
+
+header ul a{
+    text-decoration: none;
+    padding: 1rem;
+}
+
+/*Responsivité header*/
+@media screen and (max-width:768px){
+    header{
+        flex-direction: column;
+        align-items: flex-start;
+        left: 0;
+    }
+
+    header ul{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background-color: orange;
+        width: 100%;
+        top: 70%;
+        left: 0;
+        padding: 0;
+        transform: translateX(120%);
+        transition: 1s;
+        min-height: 100vh;
+    }
+
+    header ul.active{
+        transform: translateX(0);
+        transition: 1s ease;
+    }
+
+    header ul li{
+        padding: 1rem;
+    }
+
+    header .navToggle{
+        display: flex;
+    }
+
+}
+
+
+/****************************************NOTRE BANNER******************************************/
+.banner{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+    padding:2rem;
+    margin: 2rem 0;
+    background-color: #efefef;
+    min-height: 100vh;
+}
+
+
+.bannerTxt h2, .bannerTxt h3{
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: revealTxtReverse 1s ease-in-out forwards;
+}
+
+.bannerTxt h2{
+    font-size: 3rem;
+    animation-delay: 1s;
+    border-bottom: 4px solid #ff0157;
+    margin-bottom: 1rem;
+}
+
+.bannerTxt h3{
+    font-size: 2.5rem;
+    animation-delay: 2s;
+}
+
+.bannerTxt h2::before, .bannerTxt h3::before{
+    content: '';
+    position: absolute;
+    background: #ff0157;
+    width: 100%;
+    height: 100%;
+    transform-origin: right;
+    animation: revealTxt 1s ease-in-out forwards;
+    animation-delay: 2s;
+}
+
+.bannerTxt h3::before{
+    animation-delay: 3s;
+}
+
+.bannerTxt p{
+    opacity: 0;
+    animation: para 1s linear forwards;
+    animation-delay: 4s;
+    text-align: justify;
+}
+
+.bannerTxt a{
+    opacity: 0;
+    display: inline-block;
+    background-color: #ff0157;
+    color: black;
+    text-decoration: none;
+    padding: .5rem;
+    animation: plus .5s linear forwards;
+    animation-delay: 4.5s;
+}
+
+.bannerImg{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    animation: para 1s linear forwards;
+    animation-delay: 6s;
+}
+
+
+.bannerImg img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes revealTxt{
+    0%{
+        transform: scaleX(1);
+    }
+
+    100%{
+        transform: scaleX(0);
+    }
+}
+
+@keyframes revealTxtReverse{
+    0%{
+        transform: scaleX(0);
+    }
+
+    100%{
+        transform: scaleX(1);
+    }
+}
+
+@keyframes para{
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes plus{
+    0%{
+        transform: translateY(50px);
+        opacity: 0;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media screen and (max-width: 900px){
+    .bannerTxt h2{
+        font-size: 2rem;
+    }
+
+    .bannerTxt h3{
+        font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .banner{
+        grid-template-columns: 1fr;
+    }
+
+    .bannerTxt h2{
+        font-size: 2.5rem;
+    }
+
+    .bannerTxt h3{
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px){
+    .banner{
+        grid-template-columns: 1fr;
+    }
+
+    .bannerTxt h2{
+        font-size: 1.8rem;
+    }
+
+    .bannerTxt h3{
+        font-size: 1.5rem;
+    }
+
+    .bannerTxt p{
+        font-size: .8rem;
+    }
+}
